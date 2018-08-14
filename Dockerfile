@@ -9,7 +9,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/nikos/python3-alpine-flask-docker"
 
-
+RUN addgroup -S default && adduser -S -G default default 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
@@ -20,5 +20,7 @@ COPY . /usr/src/app
 
 # Expose the Flask port
 EXPOSE 5000
+
+USER default
 
 CMD [ "python", "./app.py" ]
